@@ -1,0 +1,7 @@
+method,cow_code,trial,seconds,success,measurement_scope
+QR camera,COW-101,1,1.25,yes,Tap Scan cow QR to profile visible
+QR camera,COW-101,2,1.3,yes,Tap Scan cow QR to profile visible
+QR camera,COW-101,3,1.2,yes,Tap Scan cow QR to profile visible
+Manual typed ID,COW-101,1,10,yes,Tap Scan cow QR then clear and type ID then profile visible
+Manual typed ID,COW-101,2,9,yes,Tap Scan cow QR then clear and type ID then profile visible
+Manual typed ID,COW-101,3,8,yes,Tap Scan cow QR then clear and type ID then profile visible

@@ -1,0 +1,27 @@
+{
+  "environment": "FastAPI TestClient in-process, single machine, seeded SQLite test database",
+  "limitation": "No phone, Wi-Fi, camera, TLS, DNS, or true network overhead; not a mobile benchmark.",
+  "results": {
+    "/health": {
+      "trials": 60,
+      "mean_ms": 0.615,
+      "median_ms": 0.588,
+      "p95_ms": 0.872,
+      "max_ms": 1.055
+    },
+    "/cows": {
+      "trials": 60,
+      "mean_ms": 0.922,
+      "median_ms": 0.883,
+      "p95_ms": 1.171,
+      "max_ms": 1.258
+    },
+    "/tasks": {
+      "trials": 60,
+      "mean_ms": 0.919,
+      "median_ms": 0.916,
+      "p95_ms": 1.038,
+      "max_ms": 1.269
+    }
+  }
+}

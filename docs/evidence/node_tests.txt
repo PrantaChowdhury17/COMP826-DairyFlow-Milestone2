@@ -1,0 +1,54 @@
+TAP version 13
+# (node:1493) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: QR accepts canonical and prefixed cow codes
+ok 1 - QR accepts canonical and prefixed cow codes
+  ---
+  duration_ms: 0.635151
+  type: 'test'
+  ...
+# Subtest: QR rejects unknown formats
+ok 2 - QR rejects unknown formats
+  ---
+  duration_ms: 0.121853
+  type: 'test'
+  ...
+# Subtest: shift handles three day ranges
+ok 3 - shift handles three day ranges
+  ---
+  duration_ms: 0.131677
+  type: 'test'
+  ...
+# Subtest: critical health follow-up outranks normal work
+ok 4 - critical health follow-up outranks normal work
+  ---
+  duration_ms: 0.692503
+  type: 'test'
+  ...
+# Subtest: overdue items rank above equivalent upcoming items
+ok 5 - overdue items rank above equivalent upcoming items
+  ---
+  duration_ms: 0.157175
+  type: 'test'
+  ...
+# Subtest: completed items are removed and cow list is filtered
+ok 6 - completed items are removed and cow list is filtered
+  ---
+  duration_ms: 0.113162
+  type: 'test'
+  ...
+# Subtest: manager gains visibility score for prior-shift backlog
+ok 7 - manager gains visibility score for prior-shift backlog
+  ---
+  duration_ms: 0.077074
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 99.718389
