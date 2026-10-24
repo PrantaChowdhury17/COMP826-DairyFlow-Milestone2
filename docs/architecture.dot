@@ -1,0 +1,19 @@
+digraph DairyFlow {
+  rankdir=LR; graph [bgcolor="white",pad="0.3",nodesep="0.33",ranksep="0.55",fontname="Arial"];
+  node [shape=box,style="rounded,filled",fontname="Arial",fontsize=12,fillcolor="#EAF4EC",color="#537F67",margin="0.15,0.12"];
+  edge [color="#537F67",fontname="Arial",fontsize=10];
+  subgraph cluster_mobile {label="Android device (offline-first)";style=rounded;color="#C2D6C4";
+    UI [label="React Native screens\n(role / scan / cow / task / sync)"];
+    Scan [label="QR Camera Module"];
+    Context [label="Context Engine\n(role, shift, urgency, due)"];
+    Store [label="Repository + SQLite\n(cows, tasks, outbox)"];
+    Sync [label="Manual Sync Service\n(retry, ack, pending)"];
+    UI->Scan; UI->Context; UI->Store; Store->Sync;
+  }
+  subgraph cluster_server {label="Local demonstration backend";style=rounded;color="#C2D6C4";
+    API [label="FastAPI REST /sync\nGET /cows /tasks /metrics"];
+    DB [label="Backend SQLite\n(tasks + applied operation IDs)"];
+    API->DB;
+  }
+  Sync->API [label="HTTP on local test network\n(HTTPS required for production)"];
+}

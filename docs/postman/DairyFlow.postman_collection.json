@@ -1,0 +1,11 @@
+{
+  "info": {"name":"DairyFlow local backend", "schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json", "description":"Run on a local development backend only. Sync example changes TASK-001."},
+  "variable":[{"key":"base_url","value":"http://localhost:8000"}],
+  "item":[
+    {"name":"Health check","request":{"method":"GET","url":"{{base_url}}/health"},"event":[{"listen":"test","script":{"exec":["pm.test('HTTP 200', function(){ pm.response.to.have.status(200); });","pm.test('Healthy service', function(){ pm.expect(pm.response.json().status).to.eql('ok'); });"]}}]},
+    {"name":"Cow directory","request":{"method":"GET","url":"{{base_url}}/cows"},"event":[{"listen":"test","script":{"exec":["pm.test('Has seed cows', function(){ pm.expect(pm.response.json().length).to.be.at.least(3); });"]}}]},
+    {"name":"Task directory","request":{"method":"GET","url":"{{base_url}}/tasks"},"event":[{"listen":"test","script":{"exec":["pm.test('All demo tasks', function(){ pm.expect(pm.response.json().length).to.be.at.least(4); });"]}}]},
+    {"name":"Sync task completion","request":{"method":"POST","header":[{"key":"Content-Type","value":"application/json"}],"url":"{{base_url}}/sync","body":{"mode":"raw","raw":"{\"operations\":[{\"operationId\":\"postman-demo-10001\",\"taskId\":\"TASK-001\",\"status\":\"done\",\"updatedAt\":\"2026-10-24T09:00:00Z\"}]}"}},"event":[{"listen":"test","script":{"exec":["pm.test('Acknowledged update', function(){ pm.response.to.have.status(200); pm.expect(pm.response.json().acknowledged).to.include('postman-demo-10001'); });"]}}]},
+    {"name":"Applied-operation metrics","request":{"method":"GET","url":"{{base_url}}/metrics"},"event":[{"listen":"test","script":{"exec":["pm.test('Server exposes counters', function(){ pm.expect(pm.response.json()).to.have.property('operationsApplied'); });"]}}]}
+  ]
+}

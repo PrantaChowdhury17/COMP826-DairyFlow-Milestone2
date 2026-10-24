@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {currentShift, parseCowQr, prioritiseTasks, priorityScore, type FarmTask} from './rules.ts';
+const now = new Date('2026-10-24T12:00:00.000Z');
+const base: FarmTask = {id:'T1',cowId:'COW-101',title:'Check',note:'',priority:'normal',status:'open',shift:'morning',dueAt:'2026-10-25T09:00:00.000Z',assignedTo:'worker-1'};
+const ctx = {role:'worker' as const,shift:'morning' as const,userId:'worker-1',cowId:'COW-101',now};
+test('QR accepts canonical and prefixed cow codes',()=>{assert.equal(parseCowQr('COW-101'),'COW-101');assert.equal(parseCowQr('dairyfarm:cow:cow-102'),'COW-102');});
+test('QR rejects unknown formats',()=>{for(const s of ['cow 101','NOT-A-COW','COW-1','COW-101;DROP']) assert.equal(parseCowQr(s),null);});
+test('shift handles three day ranges',()=>{assert.equal(currentShift(6),'morning');assert.equal(currentShift(14),'afternoon');assert.equal(currentShift(23),'night');});
+test('critical health follow-up outranks normal work',()=>{let hi={...base,id:'T2',priority:'critical' as const}; assert.deepEqual(prioritiseTasks([base,hi],ctx).map(t=>t.id),['T2','T1']);});
+test('overdue items rank above equivalent upcoming items',()=>{const overdue={...base,id:'T2',dueAt:'2026-10-23T09:00:00.000Z'};assert.ok(priorityScore(overdue,ctx)>priorityScore(base,ctx));});
+test('completed items are removed and cow list is filtered',()=>{const done={...base,id:'T2',status:'done' as const};const different={...base,id:'T3',cowId:'COW-102'};assert.deepEqual(prioritiseTasks([base,done,different],ctx).map(t=>t.id),['T1']);});
+test('manager gains visibility score for prior-shift backlog',()=>{const previous={...base,shift:'night' as const};assert.ok(priorityScore(previous,{...ctx,role:'manager'})>priorityScore(previous,ctx));});

@@ -1,0 +1,12 @@
+digraph Workflow {rankdir=TB;graph [bgcolor="white",nodesep="0.2",ranksep="0.30"];node [shape=box,style="rounded,filled",fontname="Arial",fontsize=11,fillcolor="#F1F8EF",color="#477658",margin="0.15,0.08"];edge [color="#477658"];
+A [label="Scan COW-101 QR / select cow"];
+B [label="Read cached cow profile and rank tasks"];
+C [label="Network disabled: mark task completed"];
+D [label="SQLite transaction: update task + append outbox operation"];
+E [label="Restart app: completed task and pending item remain"];
+F [label="Network restored: user taps Sync"];
+G [label="POST /sync with stable operation ID"];
+H [label="Backend applies task once; acknowledges operation"];
+I [label="App removes acknowledged operation from outbox"];
+A->B->C->D->E->F->G->H->I;
+}

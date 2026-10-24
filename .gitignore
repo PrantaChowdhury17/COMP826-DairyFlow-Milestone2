@@ -1,0 +1,16 @@
+node_modules/
+.expo/
+.env
+*.db
+*.db-shm
+*.db-wal
+__pycache__/
+.pytest_cache/
+.venv/
+coverage/
+.DS_Store
+mobile/.expo/
+.venv313/
+*.bak
+*.sqlite
+*.sqlite3

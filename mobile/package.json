@@ -1,0 +1,28 @@
+{
+  "name": "dairyflow-comp826",
+  "version": "0.1.0",
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "typecheck": "tsc --noEmit",
+    "test:domain": "node --experimental-strip-types --test src/domain/rules.test.ts"
+  },
+  "dependencies": {
+    "expo": "~58.0.19",
+    "expo-camera": "~58.0.12",
+    "expo-sqlite": "~58.0.14",
+    "expo-status-bar": "~58.0.4",
+    "react": "19.3.0",
+    "react-native": "0.88.0",
+    "react-native-safe-area-context": "~5.10.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "~19.3.0",
+    "typescript": "~6.0.3"
+  },
+  "type": "module"
+}

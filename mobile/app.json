@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "DairyFlow",
+    "slug": "dairyflow-comp826",
+    "scheme": "dairyflow",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "nz.aut.comp826.dairyflow",
+      "permissions": [
+        "CAMERA"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow DairyFlow to scan test cow QR codes."
+        }
+      ],
+      "expo-sqlite",
+      "expo-status-bar"
+    ],
+    "experiments": {
+      "tsconfigPaths": true
+    }
+  }
+}
